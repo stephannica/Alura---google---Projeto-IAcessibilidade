@@ -34,8 +34,9 @@ export default function MainScreen() {
       handleClickAudio("Tire ou coloque uma foto")
       fileInputRef.current?.click();
       setShowLinkInput(false);
+      setLink("");
     } else {
-      handleClickAudio("Coloque o link")
+      handleClickAudio("Coloque o link na caixa de texto")
       setShowLinkInput(true);
     }
   };
@@ -61,15 +62,15 @@ export default function MainScreen() {
             ref={fileInputRef}
             onChange={handleFileChange}
           />
-
+          {/* Input de link */}
           {showLinkInput && (
-            <div className="flex flex-col items-center pt-10">
+            <div className="pt-10 ">
               <input
                 type="text"
                 placeholder="Cole o link aqui"
                 value={link}
                 onChange={handleLinkChange}
-                className="p-3 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-blue-500"
+                className="text-2xl font-semibold text-center p-3 rounded-lg border-2 border-[#21409a] focus:border-indigo-950"
               />
             </div>
           )}
