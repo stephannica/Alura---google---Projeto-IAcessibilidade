@@ -169,7 +169,7 @@ export default function Illiteracy({
         >
           <div className="flex items-center-safe gap-5">
             <img
-              className="h-15"
+              className="h-10"
               src="/icons/arrow-left.svg"
               alt="Voltar"
               onClick={() => handleClickAudio("Voltar")}
