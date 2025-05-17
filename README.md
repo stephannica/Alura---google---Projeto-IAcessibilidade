@@ -38,9 +38,9 @@ O IAcessibilidade oferece funcionalidades essenciais para facilitar o acesso à 
 
 ## Screenshots
 ### Tela inicial (1), Tela Dificuldade em ler (2) e Tela Problemas de visão (3)
-<img src="https://i.imgur.com/TMHJiuS.png" height="700px"></img>
-<img src="https://i.imgur.com/AxrtVvM.png" height="700px"></img>
-<img src="https://i.imgur.com/LSLfPea.png" height="700px"></img>
+<img src="https://i.imgur.com/TMHJiuS.png" height="600px"></img>
+<img src="https://i.imgur.com/AxrtVvM.png" height="600px"></img>
+<img src="https://i.imgur.com/LSLfPea.png" height="600px"></img>
 ### ➡️ Confira o meu projeto acessando o <a href="https://alura-google-projeto-i-acessibilidade-stephanni-c-rocha.vercel.app/">link do vercel</a>.
 <br>
 
