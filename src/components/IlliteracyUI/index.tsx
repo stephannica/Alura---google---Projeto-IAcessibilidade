@@ -7,9 +7,11 @@ interface IlliteracyProps {
   onProcessLink: () => Promise<void>;
   onTriggerPhoto: () => void;
   onTriggerLink: () => void;
+  onRestartSpeaking: () => void;
+  isAudioAvailable: boolean;
 }
 
-export default function Illiteracy({linkValue, onLinkChange, onProcessLink, onTriggerPhoto,onTriggerLink}: IlliteracyProps) {
+export default function Illiteracy({linkValue, isAudioAvailable, onLinkChange, onProcessLink, onTriggerPhoto, onTriggerLink, onRestartSpeaking}: IlliteracyProps) {
   const [showLinkInput, setShowLinkInput] = useState(false);
 
   const handleLocalFunctionalityClick = (
@@ -47,6 +49,7 @@ export default function Illiteracy({linkValue, onLinkChange, onProcessLink, onTr
             placeholder="Cole o link aqui"
             value={linkValue}
             onChange={onLinkChange}
+            onKeyDown={(e) => { if (e.key === 'Enter') { handleLocalProcessLink(); }}}
             className="text-2xl font-semibold text-center p-3 w-full focus:outline-none"
           />
           <button
@@ -59,6 +62,20 @@ export default function Illiteracy({linkValue, onLinkChange, onProcessLink, onTr
               src="/icons/play.svg"
               alt="enviar e ouvir"
             />
+          </button>
+        </div>
+      )}
+
+      {/* Botões de reprodução */}
+      {isAudioAvailable && (
+        <div className="mt-8 flex gap-4">
+          {/* Botão Reiniciar */}
+          <button
+            type="button"
+            onClick={onRestartSpeaking}
+            className="p-3 rounded-lg bg-red-500 text-white disabled:opacity-50"
+          >
+            Reiniciar
           </button>
         </div>
       )}

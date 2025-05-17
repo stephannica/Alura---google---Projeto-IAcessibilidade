@@ -7,10 +7,19 @@ interface VisualImpairmentsProps {
   onProcessLink: () => Promise<void>;
   onTriggerPhoto: () => void;
   onTriggerLink: () => void;
+  onRestartSpeaking: () => void;
+  isAudioAvailable: boolean;
 }
 
 export default function VisualImpairments({
-  linkValue, onLinkChange, onProcessLink, onTriggerPhoto, onTriggerLink,}: VisualImpairmentsProps) {
+  linkValue,
+  onLinkChange,
+  onProcessLink,
+  onTriggerPhoto,
+  onTriggerLink,
+  onRestartSpeaking,
+  isAudioAvailable,
+}: VisualImpairmentsProps) {
   const [showLinkInput, setShowLinkInput] = useState(false);
 
   const handleLocalFunctionalityClick = (
@@ -48,6 +57,11 @@ export default function VisualImpairments({
             placeholder="Cole o link aqui"
             value={linkValue}
             onChange={onLinkChange}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleLocalProcessLink();
+              }
+            }}
             className="text-2xl font-semibold text-center p-3 w-full focus:outline-none"
           />
           <button
@@ -64,9 +78,23 @@ export default function VisualImpairments({
         </div>
       )}
 
+      {/* Botões de reprodução */}
+      {isAudioAvailable && (
+        <div className="mt-8 flex gap-4">
+          {/* Botão Reiniciar */}
+          <button
+            type="button"
+            onClick={onRestartSpeaking}
+            className="p-3 rounded-lg bg-red-500 text-white disabled:opacity-50"
+          >
+            Reiniciar
+          </button>
+        </div>
+      )}
+
       {/* Texto de seleção de funcionalidade */}
       <div className="pt-15 text-center flex gap-2">
-        <h3 className="text-2xl font-semibold">O quê você quer fazer?</h3>
+        <h3 className="text-3xl font-bold">O quê você quer fazer?</h3>
         <button
           type="button"
           onClick={() => handleClickAudio("O que você quer fazer")}
@@ -89,12 +117,14 @@ export default function VisualImpairments({
         >
           <div className="flex items-center-safe gap-2">
             <img
-              className="h-10"
+              className="h-15"
               src="/icons/camera.svg"
               alt="Tirar foto e ouvir"
             />
+            <h3 className="text-3xl font-semibold">Tirar foto e ouvir</h3>
           </div>
         </button>
+
         {/* Ouvir Link */}
         <button
           type="button"
@@ -103,10 +133,11 @@ export default function VisualImpairments({
         >
           <div className="flex items-center-safe gap-2">
             <img
-              className="h-10"
+              className="h-15"
               src="/icons/link.svg"
               alt="Selecionar Link e ouvir"
             />
+            <h3 className="text-3xl font-semibold">Colar link e ouvir</h3>
           </div>
         </button>
       </div>
