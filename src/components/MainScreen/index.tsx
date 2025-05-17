@@ -2,6 +2,10 @@
 import { useLocation } from "react-router-dom";
 import handleClickAudio from "../../utils/textToSpeech";
 import { useEffect, useRef, useState } from "react";
+import {
+  processImageForText,
+  processLinkForText,
+} from "../../utils/processing";
 
 export default function MainScreen() {
   const location = useLocation();
@@ -17,11 +21,42 @@ export default function MainScreen() {
     }
   }, [selectedDisability]);
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const file = event.target.files?.[0];
     if (file) {
-      //Processamento IA
+      handleClickAudio(
+        "Foto selecionada. Processando imagem com inteligência artificial."
+      );
+      const extractedText = await processImageForText(file);
+      if (extractedText) {
+        handleClickAudio(extractedText);
+      } else {
+        handleClickAudio(
+          "Não consegui encontrar texto na foto ou ocorreu um erro."
+        );
+      }
       event.target.value = "";
+    }
+  };
+
+  const processLink = async () => {
+    if (link) {
+      handleClickAudio(
+        "Link inserido. Processando conteúdo da página com inteligência artificial."
+      );
+      const extractedText = await processLinkForText(link); // Chama a função
+      if (extractedText) {
+        handleClickAudio(extractedText);
+      } else {
+        handleClickAudio(
+          "Não consegui ler o conteúdo do link ou ocorreu um erro."
+        );
+      }
+    } else {
+      // Se o link estiver vazio, dá um feedback
+      handleClickAudio("Por favor, cole um link antes de processar.");
     }
   };
 
@@ -72,7 +107,14 @@ export default function MainScreen() {
                 onChange={handleLinkChange}
                 className="text-2xl font-semibold text-center p-3 w-full focus:outline-none"
               />
-              <button type="button" className="focus:outline-none">
+              <button
+                type="button"
+                className="focus:outline-none"
+                onClick={async () => {
+                  await processLink();
+                  setLink("");
+                }}
+              >
                 <img
                   className="h-10 w-10 cursor-pointer"
                   src="/icons/play.svg"
