@@ -85,9 +85,12 @@ export default function VisualImpairments({
           <button
             type="button"
             onClick={onRestartSpeaking}
-            className="p-3 rounded-lg bg-red-500 text-white disabled:opacity-50"
+            className="text-3xl font-semibold p-3 rounded-lg bg-[#21409a] text-white hover:bg-indigo-900"
           >
-            Reiniciar
+            <div className="flex items-center-safe gap-2">
+              <img src="/icons/reset.svg" className="h-15" alt="Repetir Áudio"></img>
+              <h3 className="text-3xl font-semibold">Ouvir novamente</h3>
+            </div>
           </button>
         </div>
       )}
