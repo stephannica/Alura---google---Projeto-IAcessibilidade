@@ -1,11 +1,10 @@
 // src/MainScreen.tsx
 import { useLocation } from "react-router-dom";
-import handleClickAudio from "../../utils/textToSpeech";
 import { useEffect, useRef, useState } from "react";
-import {
-  processImageForText,
-  processLinkForText,
-} from "../../utils/processing";
+import { processImageForText, processLinkForText } from "../../utils/processing";
+
+
+import handleClickAudio, { restartLastSpokenText } from "../../utils/textToSpeech";
 import VisualImpairments from "../VisualImpairmentsUI";
 import Illiteracy from "../IlliteracyUI";
 
@@ -15,6 +14,7 @@ export default function MainScreen() {
 
   const [link, setLink] = useState("");
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [extractedText, setExtractedText] = useState<string | null>(null);
 
   useEffect(() => {
     if (selectedDisability === "analfabetismo") {
@@ -30,10 +30,15 @@ export default function MainScreen() {
       handleClickAudio(
         "Foto selecionada. Processando imagem com inteligência artificial."
       );
-      const extractedText = await processImageForText(file);
-      if (extractedText) {
-        handleClickAudio(extractedText);
+      setExtractedText(null);
+      setLink("");
+
+      const text = await processImageForText(file);
+      if (text) {
+        setExtractedText(text)
+        handleClickAudio(text);
       } else {
+        setExtractedText(null);
         handleClickAudio(
           "Não consegui encontrar texto na foto ou ocorreu um erro."
         );
@@ -47,31 +52,38 @@ export default function MainScreen() {
       handleClickAudio(
         "Link inserido. Processando conteúdo da página com inteligência artificial."
       );
-      const extractedText = await processLinkForText(link); // Chama a função
-      if (extractedText) {
-        handleClickAudio(extractedText);
+      setExtractedText(null)
+
+      const text = await processLinkForText(link); // Chama a função
+      if (text) {
+        setExtractedText(text);
+        handleClickAudio(text);
       } else {
+        setExtractedText(null);
         handleClickAudio(
           "Não consegui ler o conteúdo do link ou ocorreu um erro."
         );
       }
     } else {
-      // Se o link estiver vazio, dá um feedback
       handleClickAudio("Por favor, cole um link antes de processar.");
     }
   };
 
   const handleLinkChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setLink(event.target.value);
+    setExtractedText(null);
   };
 
   const triggerPhotoInput = () => {
     handleClickAudio("Tire ou coloque uma foto");
     fileInputRef.current?.click();
+    setExtractedText(null);
+    setLink('');
   };
 
   const triggerLinkInput = () => {
     handleClickAudio("Coloque o link na caixa de texto");
+    setExtractedText(null);
   };
 
   return (
@@ -79,6 +91,7 @@ export default function MainScreen() {
       {/* Input de foto */}
       <input
         type="file"
+        aria-label="Escolher foto"
         accept="image/*"
         className="hidden"
         ref={fileInputRef}
@@ -92,8 +105,11 @@ export default function MainScreen() {
           onProcessLink={processLink}
           onTriggerPhoto={triggerPhotoInput}
           onTriggerLink={triggerLinkInput}
+          onRestartSpeaking={restartLastSpokenText}
+          isAudioAvailable={!!extractedText}
         />
       )}
+
       {selectedDisability === "deficienciaVisual" && (
         <VisualImpairments
           linkValue={link}
@@ -101,6 +117,8 @@ export default function MainScreen() {
           onProcessLink={processLink}
           onTriggerPhoto={triggerPhotoInput}
           onTriggerLink={triggerLinkInput}
+          onRestartSpeaking={restartLastSpokenText}
+          isAudioAvailable={!!extractedText}
         />
       )}
     </div>
