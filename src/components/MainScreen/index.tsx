@@ -31,6 +31,7 @@ export default function MainScreen() {
 
   const handleFunctionalityClick = (action: "tirarFoto" | "selecionarLink") => {
     if (action === "tirarFoto") {
+      handleClickAudio("Tire ou coloque uma foto")
       fileInputRef.current?.click();
       setShowLinkInput(false);
     } else {
