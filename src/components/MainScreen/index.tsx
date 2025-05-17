@@ -6,8 +6,8 @@ import {
   processImageForText,
   processLinkForText,
 } from "../../utils/processing";
-import VisualImpairments from "../VisualImpairments";
-import Illiteracy from "../Illiteracy";
+import VisualImpairments from "../VisualImpairmentsUI";
+import Illiteracy from "../IlliteracyUI";
 
 export default function MainScreen() {
   const location = useLocation();
