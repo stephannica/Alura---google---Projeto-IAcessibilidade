@@ -131,7 +131,7 @@ export default function VisualImpairments({
       </div>
 
       {/* Botões de Funcionalidade */}
-      <div className="flex flex-col w-full gap-4 pt-14 px-10">
+      <div className="flex flex-col gap-4 pt-14 px-10">
         {/* Tirar foto */}
         <button
           type="button"
@@ -151,7 +151,7 @@ export default function VisualImpairments({
         {/* Ouvir Link */}
         <button
           type="button"
-          className="flex h-20 items-center justify-center rounded-lg bg-[#21409a] text-white hover:bg-indigo-900 transition duration-300 cursor-pointer "
+          className="flex h-20 p-10 items-center justify-center rounded-lg bg-[#21409a] text-white hover:bg-indigo-900 transition duration-300 cursor-pointer "
           onClick={() => handleLocalFunctionalityClick("selecionarLink")}
         >
           <div className="flex items-center-safe gap-2">
@@ -166,11 +166,11 @@ export default function VisualImpairments({
       </div>
 
       {/* Botão Voltar */}
-      <div className="flex flex-col w-full gap-4 pt-14 px-10">
+      <div className="flex flex-col gap-4 pt-14 px-10">
         <button
           type="button"
           onClick={onGoBack}
-          className="flex h-20 items-center justify-center rounded-lg bg-[#21409a] text-white hover:bg-indigo-900 transition duration-300 cursor-pointer"
+          className="flex h-20 px-22 items-center justify-center rounded-lg bg-[#21409a] text-white hover:bg-indigo-900 transition duration-300 cursor-pointer"
         >
           <div className="flex items-center-safe gap-5">
             <img
