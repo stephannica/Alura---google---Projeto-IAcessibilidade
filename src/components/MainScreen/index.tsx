@@ -15,6 +15,7 @@ export default function MainScreen() {
   const [link, setLink] = useState("");
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [extractedText, setExtractedText] = useState<string | null>(null);
+  const [photoPreviewUrl, setPhotoPreviewUrl] = useState<string | null>(null);
 
   useEffect(() => {
     if (selectedDisability === "analfabetismo") {
@@ -32,6 +33,13 @@ export default function MainScreen() {
       );
       setExtractedText(null);
       setLink("");
+      setPhotoPreviewUrl(null);
+
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPhotoPreviewUrl(reader.result as string); 
+      };
+      reader.readAsDataURL(file);
 
       const text = await processImageForText(file);
       if (text) {
@@ -53,6 +61,7 @@ export default function MainScreen() {
         "Link inserido. Processando conteúdo da página com inteligência artificial."
       );
       setExtractedText(null)
+      setPhotoPreviewUrl(null)
 
       const text = await processLinkForText(link); // Chama a função
       if (text) {
@@ -72,6 +81,7 @@ export default function MainScreen() {
   const handleLinkChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setLink(event.target.value);
     setExtractedText(null);
+    setPhotoPreviewUrl(null)
   };
 
   const triggerPhotoInput = () => {
@@ -79,11 +89,13 @@ export default function MainScreen() {
     fileInputRef.current?.click();
     setExtractedText(null);
     setLink('');
+    setPhotoPreviewUrl(null)
   };
 
   const triggerLinkInput = () => {
     handleClickAudio("Coloque o link na caixa de texto");
     setExtractedText(null);
+    setPhotoPreviewUrl(null)
   };
 
   return (
@@ -107,6 +119,7 @@ export default function MainScreen() {
           onTriggerLink={triggerLinkInput}
           onRestartSpeaking={restartLastSpokenText}
           isAudioAvailable={!!extractedText}
+          photoPreviewUrl={photoPreviewUrl}
         />
       )}
 
@@ -119,6 +132,7 @@ export default function MainScreen() {
           onTriggerLink={triggerLinkInput}
           onRestartSpeaking={restartLastSpokenText}
           isAudioAvailable={!!extractedText}
+          photoPreviewUrl={photoPreviewUrl}
         />
       )}
     </div>

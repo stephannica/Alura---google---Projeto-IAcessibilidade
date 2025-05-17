@@ -9,6 +9,7 @@ interface VisualImpairmentsProps {
   onTriggerLink: () => void;
   onRestartSpeaking: () => void;
   isAudioAvailable: boolean;
+  photoPreviewUrl?: string | null;
 }
 
 export default function VisualImpairments({
@@ -19,6 +20,7 @@ export default function VisualImpairments({
   onTriggerLink,
   onRestartSpeaking,
   isAudioAvailable,
+  photoPreviewUrl
 }: VisualImpairmentsProps) {
   const [showLinkInput, setShowLinkInput] = useState(false);
 
@@ -48,6 +50,18 @@ export default function VisualImpairments({
       <div className="flex flex-col items-center">
         <img className="h-35" src="/img/logo.png" alt="Logo IAcessibilidade" />
       </div>
+
+      {/* Preview da foto */}
+      {photoPreviewUrl && ( 
+        <div className="mt-4 max-w-full h-auto"> 
+          <img
+            src={photoPreviewUrl}
+            alt="Prévia da foto selecionada"
+            className="max-w-full h-auto rounded-lg shadow-md "
+            style={{ maxHeight: '300px' }}
+          />
+        </div>
+      )}
 
       {/* Input de link */}
       {showLinkInput && (
