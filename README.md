@@ -31,7 +31,7 @@ O IAcessibilidade oferece funcionalidades essenciais para facilitar o acesso à 
 * **🖼️ Ouvir Texto de Foto:** Permite tirar uma foto de qualquer texto físico (um aviso, um trecho de livro, um rótulo) ou selecionar uma imagem da galeria. A inteligência artificial extrai o texto dessa imagem e o aplicativo o lê em voz alta.
 * **🔗 Ouvir Conteúdo de Link:** O usuário pode colar a URL de uma página da web. O aplicativo acessa o conteúdo principal dessa página (ignorando elementos de navegação, anúncios, etc.) e o transforma em áudio.
 * **⏯️ Controle de Áudio Essencial:** Durante a leitura, o usuário tem acesso a um controle simples para **Reiniciar** a audição do último texto falado, permitindo ouvir novamente a informação sempre que precisar.
-* **🚨 Este projeto é um projeto inicial, portanto ainda está em resolução para dispositivos móveis e algumas outras funções ainda irão ser adicionadas!**
+* **🚨 Este projeto é um projeto INICIAL, portanto ainda está em resolução para dispositivos móveis e algumas outras funções ainda irão ser adicionadas!**
 
 ## Tecnologias Utilizadas
 <img src="https://skillicons.dev/icons?i=vite,ts,react,tailwind,)(https://skillicons.dev)"/>
