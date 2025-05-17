@@ -35,6 +35,7 @@ export default function MainScreen() {
       fileInputRef.current?.click();
       setShowLinkInput(false);
     } else {
+      handleClickAudio("Coloque o link")
       setShowLinkInput(true);
     }
   };
