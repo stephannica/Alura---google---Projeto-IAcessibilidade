@@ -31,12 +31,12 @@ export default function MainScreen() {
 
   const handleFunctionalityClick = (action: "tirarFoto" | "selecionarLink") => {
     if (action === "tirarFoto") {
-      handleClickAudio("Tire ou coloque uma foto")
+      handleClickAudio("Tire ou coloque uma foto");
       fileInputRef.current?.click();
       setShowLinkInput(false);
       setLink("");
     } else {
-      handleClickAudio("Coloque o link na caixa de texto")
+      handleClickAudio("Coloque o link na caixa de texto");
       setShowLinkInput(true);
     }
   };
@@ -64,19 +64,26 @@ export default function MainScreen() {
           />
           {/* Input de link */}
           {showLinkInput && (
-            <div className="pt-10 ">
+            <div className="flex items-center rounded-lg border-2 border-[#21409a] mt-20 px-2 py-1">
               <input
                 type="text"
                 placeholder="Cole o link aqui"
                 value={link}
                 onChange={handleLinkChange}
-                className="mt-15 text-2xl font-semibold text-center p-3 rounded-lg border-2 border-[#21409a] focus:border-indigo-950"
+                className="text-2xl font-semibold text-center p-3 w-full focus:outline-none"
               />
+              <button type="button" className="focus:outline-none">
+                <img
+                  className="h-10 w-10 cursor-pointer"
+                  src="/icons/play.svg"
+                  alt="enviar e ouvir"
+                />
+              </button>
             </div>
           )}
 
           {/* Texto de seleção de funcionalidade */}
-          <div className="pt-30 text-center flex gap-2">
+          <div className="pt-15 text-center flex gap-2">
             <h3 className="text-2xl font-semibold">O quê você quer fazer?</h3>
             <button
               type="button"
@@ -96,7 +103,7 @@ export default function MainScreen() {
             <button
               type="button"
               className="flex h-20 items-center justify-center rounded-lg bg-[#21409a] text-white hover:bg-indigo-900 transition duration-300 cursor-pointer"
-              onClick={() => handleFunctionalityClick('tirarFoto')}
+              onClick={() => handleFunctionalityClick("tirarFoto")}
             >
               <div className="flex items-center-safe gap-2">
                 <img
@@ -110,7 +117,7 @@ export default function MainScreen() {
             <button
               type="button"
               className="flex h-20 items-center justify-center rounded-lg bg-[#21409a] text-white hover:bg-indigo-900 transition duration-300 cursor-pointer "
-              onClick={() => handleFunctionalityClick('selecionarLink')}
+              onClick={() => handleFunctionalityClick("selecionarLink")}
             >
               <div className="flex items-center-safe gap-2">
                 <img
