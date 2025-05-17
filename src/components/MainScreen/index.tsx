@@ -70,7 +70,7 @@ export default function MainScreen() {
                 placeholder="Cole o link aqui"
                 value={link}
                 onChange={handleLinkChange}
-                className="text-2xl font-semibold text-center p-3 rounded-lg border-2 border-[#21409a] focus:border-indigo-950"
+                className="mt-15 text-2xl font-semibold text-center p-3 rounded-lg border-2 border-[#21409a] focus:border-indigo-950"
               />
             </div>
           )}
