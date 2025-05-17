@@ -10,9 +10,20 @@ interface IlliteracyProps {
   onRestartSpeaking: () => void;
   isAudioAvailable: boolean;
   photoPreviewUrl?: string | null;
+  onGoBack: () => void;
 }
 
-export default function Illiteracy({linkValue, isAudioAvailable, photoPreviewUrl, onLinkChange, onProcessLink, onTriggerPhoto, onTriggerLink, onRestartSpeaking}: IlliteracyProps) {
+export default function Illiteracy({
+  linkValue,
+  onGoBack,
+  isAudioAvailable,
+  photoPreviewUrl,
+  onLinkChange,
+  onProcessLink,
+  onTriggerPhoto,
+  onTriggerLink,
+  onRestartSpeaking,
+}: IlliteracyProps) {
   const [showLinkInput, setShowLinkInput] = useState(false);
 
   const handleLocalFunctionalityClick = (
@@ -44,12 +55,12 @@ export default function Illiteracy({linkValue, isAudioAvailable, photoPreviewUrl
 
       {/* Preview da foto */}
       {photoPreviewUrl && (
-        <div className="mt-4 max-w-full h-auto "> 
+        <div className="mt-4 max-w-full h-auto ">
           <img
             src={photoPreviewUrl}
             alt="Prévia da foto selecionada"
             className="max-w-full h-auto rounded-lg shadow-md"
-            style={{ maxHeight: '300px' }}
+            style={{ maxHeight: "300px" }}
           />
         </div>
       )}
@@ -62,7 +73,11 @@ export default function Illiteracy({linkValue, isAudioAvailable, photoPreviewUrl
             placeholder="Cole o link aqui"
             value={linkValue}
             onChange={onLinkChange}
-            onKeyDown={(e) => { if (e.key === 'Enter') { handleLocalProcessLink(); }}}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleLocalProcessLink();
+              }
+            }}
             className="text-2xl font-semibold text-center p-3 w-full focus:outline-none"
           />
           <button
@@ -89,7 +104,11 @@ export default function Illiteracy({linkValue, isAudioAvailable, photoPreviewUrl
             className="text-3xl font-semibold p-3 rounded-lg bg-[#21409a] text-white hover:bg-indigo-900"
           >
             <div className="flex items-center-safe gap-2">
-              <img src="/icons/reset.svg" className="h-10" alt="Repetir Áudio"></img>
+              <img
+                src="/icons/reset.svg"
+                className="h-10"
+                alt="Repetir Áudio"
+              ></img>
             </div>
           </button>
         </div>
@@ -137,6 +156,23 @@ export default function Illiteracy({linkValue, isAudioAvailable, photoPreviewUrl
               className="h-10"
               src="/icons/link.svg"
               alt="Selecionar Link e ouvir"
+            />
+          </div>
+        </button>
+      </div>
+
+      <div className="flex flex-col w-full gap-4 pt-14 px-10">
+        <button
+          type="button"
+          onClick={onGoBack}
+          className="flex h-20 items-center justify-center rounded-lg bg-[#21409a] text-white hover:bg-indigo-900 transition duration-300 cursor-pointer"
+        >
+          <div className="flex items-center-safe gap-5">
+            <img
+              className="h-15"
+              src="/icons/arrow-left.svg"
+              alt="Voltar"
+              onClick={() => handleClickAudio("Voltar")}
             />
           </div>
         </button>

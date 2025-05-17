@@ -10,6 +10,7 @@ interface VisualImpairmentsProps {
   onRestartSpeaking: () => void;
   isAudioAvailable: boolean;
   photoPreviewUrl?: string | null;
+  onGoBack: () => void;
 }
 
 export default function VisualImpairments({
@@ -20,7 +21,8 @@ export default function VisualImpairments({
   onTriggerLink,
   onRestartSpeaking,
   isAudioAvailable,
-  photoPreviewUrl
+  photoPreviewUrl,
+  onGoBack,
 }: VisualImpairmentsProps) {
   const [showLinkInput, setShowLinkInput] = useState(false);
 
@@ -52,13 +54,13 @@ export default function VisualImpairments({
       </div>
 
       {/* Preview da foto */}
-      {photoPreviewUrl && ( 
-        <div className="mt-4 max-w-full h-auto"> 
+      {photoPreviewUrl && (
+        <div className="mt-4 max-w-full h-auto">
           <img
             src={photoPreviewUrl}
             alt="Prévia da foto selecionada"
             className="max-w-full h-auto rounded-lg shadow-md "
-            style={{ maxHeight: '300px' }}
+            style={{ maxHeight: "300px" }}
           />
         </div>
       )}
@@ -102,7 +104,11 @@ export default function VisualImpairments({
             className="text-3xl font-semibold p-3 rounded-lg bg-[#21409a] text-white hover:bg-indigo-900"
           >
             <div className="flex items-center-safe gap-2">
-              <img src="/icons/reset.svg" className="h-15" alt="Repetir Áudio"></img>
+              <img
+                src="/icons/reset.svg"
+                className="h-15"
+                alt="Repetir Áudio"
+              ></img>
               <h3 className="text-3xl font-semibold">Ouvir novamente</h3>
             </div>
           </button>
@@ -155,6 +161,25 @@ export default function VisualImpairments({
               alt="Selecionar Link e ouvir"
             />
             <h3 className="text-3xl font-semibold">Colar link e ouvir</h3>
+          </div>
+        </button>
+      </div>
+
+      {/* Botão Voltar */}
+      <div className="flex flex-col w-full gap-4 pt-14 px-10">
+        <button
+          type="button"
+          onClick={onGoBack}
+          className="flex h-20 items-center justify-center rounded-lg bg-[#21409a] text-white hover:bg-indigo-900 transition duration-300 cursor-pointer"
+        >
+          <div className="flex items-center-safe gap-5">
+            <img
+              className="h-15"
+              src="/icons/arrow-left.svg"
+              alt="Voltar"
+              onClick={() => handleClickAudio("Voltar")}
+            />
+            <h3 className="text-3xl font-semibold">Voltar</h3>
           </div>
         </button>
       </div>

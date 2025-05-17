@@ -1,6 +1,6 @@
 // src/MainScreen.tsx
-import { useLocation } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useRef, useState } from "react";
 import { processImageForText, processLinkForText } from "../../utils/processing";
 
 
@@ -10,6 +10,8 @@ import Illiteracy from "../IlliteracyUI";
 
 export default function MainScreen() {
   const location = useLocation();
+  const navigate = useNavigate();
+
   const selectedDisability = location.state?.selectedDisability || null;
 
   const [link, setLink] = useState("");
@@ -17,11 +19,12 @@ export default function MainScreen() {
   const [extractedText, setExtractedText] = useState<string | null>(null);
   const [photoPreviewUrl, setPhotoPreviewUrl] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (selectedDisability === "analfabetismo") {
-      //handleClickAudio("Bem-vindo à tela principal escolha se quer tirar uma foto ou selecionar um link.");
-    }
-  }, [selectedDisability]);
+    const handleGoBack = () => {
+    navigate('/');
+    setLink('');
+    setExtractedText(null);
+    setPhotoPreviewUrl(null);
+  };
 
   const handleFileChange = async (
     event: React.ChangeEvent<HTMLInputElement>
@@ -120,6 +123,7 @@ export default function MainScreen() {
           onRestartSpeaking={restartLastSpokenText}
           isAudioAvailable={!!extractedText}
           photoPreviewUrl={photoPreviewUrl}
+          onGoBack={handleGoBack}
         />
       )}
 
@@ -133,6 +137,7 @@ export default function MainScreen() {
           onRestartSpeaking={restartLastSpokenText}
           isAudioAvailable={!!extractedText}
           photoPreviewUrl={photoPreviewUrl}
+          onGoBack={handleGoBack}
         />
       )}
     </div>
