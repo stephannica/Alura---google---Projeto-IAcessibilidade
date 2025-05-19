@@ -37,10 +37,13 @@ O IAcessibilidade oferece funcionalidades essenciais para facilitar o acesso à 
 <img src="https://skillicons.dev/icons?i=vite,ts,react,tailwind,)(https://skillicons.dev)"/>
 
 ## Screenshots
-### Tela inicial (1), Tela Dificuldade em ler (2) e Tela Problemas de visão (3)
-<img src="https://i.imgur.com/TMHJiuS.png" height="600px"></img>
-<img src="https://i.imgur.com/AxrtVvM.png" height="600px"></img>
-<img src="https://i.imgur.com/LSLfPea.png" height="600px"></img>
+<img src="https://i.imgur.com/drAWskj.png" height="700px"></img>
+
+### Interface pensada para ser totalmente acessível.
+* Áudios que narram títulos e botões com instruções claras
+* Se a pessoa seleciona que tem problemas em ler, o aplicativo se ajusta às necessidades dela, como por exemplo, evitar textos e utilizar mais ícones conhecidos com foco em clareza e facilitando a utilização.
+* Se a pessoa seleciona que tem problemas na visão, o aplicativo se ajusta às necessidades dela, apresentando fonte maior e cores mais contrastantes.
+
 ### ➡️ Confira o meu projeto acessando o <a href="https://alura-google-projeto-i-acessibilidade-stephanni-c-rocha.vercel.app/">link do vercel</a>.
 <br>
 
